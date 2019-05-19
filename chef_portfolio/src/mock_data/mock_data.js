@@ -12,14 +12,17 @@ function generate_data() {
   }
 
   class Recipe {
-    constructor(name, pic, chef, ingreds, direcs) {
+    constructor(name, type, pic, chef, ingreds, direcs) {
       this.name = name;
+      this.type = type;
       this.pic = pic;
       this.chef = chef;
       this.ingreds = ingreds;
       this.direcs = direcs;
     }
   }
+
+  const mealTypes = ["breakfast", "lunch", "dinner", "dessert", "snack"];
 
   let chefs = new Array(10);
 
@@ -45,6 +48,7 @@ function generate_data() {
 
     recipes[i] = new Recipe(
       faker.lorem.words(),
+      mealTypes[Math.floor(Math.random() * mealTypes.length)],
       faker.image.food(),
       chefs[Math.floor(Math.random() * chefs.length)],
       ingreds,
