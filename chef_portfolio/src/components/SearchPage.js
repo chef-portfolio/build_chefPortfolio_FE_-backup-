@@ -19,10 +19,12 @@ export default class SearchPage extends React.Component {
     this.setState({ recipeList: recipes });
   }
 
-  handleChange = ev => {
-    this.setState({
+  handleChange = async ev => {
+    await this.setState({
       [ev.target.name]: ev.target.value
     });
+
+    this.search(ev);
   };
 
   search = ev => {
@@ -52,7 +54,6 @@ export default class SearchPage extends React.Component {
           isMatch = false;
         }
       }
-
       return isMatch;
     }
 
