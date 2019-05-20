@@ -1,16 +1,33 @@
 import React from "react";
+import { BrowserRouter as Router, Route, NavLink } from "react-router-dom";
+
+// components
+import NavBar from "./components/NavBar";
+import SearchPage from "./components/SearchPage";
+import ManagePage from "./components/ManagePage";
+
+// create-react-app bootstrapped items
 import logo from "./logo.svg";
 import "./App.css";
-import SearchPage from "./components/SearchPage";
+
+// temporary MOCK data
+import generate_data from "./mock_data/mock_data";
+const data = generate_data();
+let recipes = data.recipes;
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-      </header>
-      <SearchPage />
-    </div>
+    <Router>
+      <NavBar />
+      <div className="App">
+        <Route
+          exact
+          path="/"
+          render={props => <SearchPage recipes={recipes} />}
+        />
+        <Route path="/manage" render={props => <ManagePage />} />
+      </div>
+    </Router>
   );
 }
 

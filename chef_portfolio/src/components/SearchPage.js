@@ -1,11 +1,12 @@
 import React from "react";
 import styled from "styled-components";
 import RecipeCard from "./recipes/RecipeCard";
-import generate_data from "../mock_data/mock_data";
+
 import SearchForm from "./search/SearchForm";
 
-const data = generate_data();
-let recipes = data.recipes;
+// create-react-app bootstrapped items
+import logo from "../logo.svg";
+import "../App.css";
 
 export default class SearchPage extends React.Component {
   state = {
@@ -16,7 +17,7 @@ export default class SearchPage extends React.Component {
   };
 
   componentDidMount() {
-    this.setState({ recipeList: recipes });
+    this.setState({ recipeList: this.props.recipes });
   }
 
   handleChange = async ev => {
@@ -58,13 +59,16 @@ export default class SearchPage extends React.Component {
     }
 
     this.setState({
-      recipeList: recipes.filter(recipe => filterRecipes(recipe))
+      recipeList: this.props.recipes.filter(recipe => filterRecipes(recipe))
     });
   };
 
   render() {
     return (
       <>
+        <header className="App-header">
+          <img src={logo} className="App-logo" alt="logo" />
+        </header>
         <SearchForm
           state={this.state}
           handleChange={this.handleChange}
