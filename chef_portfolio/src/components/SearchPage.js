@@ -4,11 +4,13 @@ import RecipeCard from "./recipes/RecipeCard";
 
 import SearchForm from "./search/SearchForm";
 
+import { withRouter } from "react-router-dom";
+
 // create-react-app bootstrapped items
 import logo from "../logo.svg";
 import "../App.css";
 
-export default class SearchPage extends React.Component {
+class SearchPage extends React.Component {
   state = {
     searchInput: "",
     searchType: "recipes",
@@ -28,8 +30,7 @@ export default class SearchPage extends React.Component {
     this.search(ev);
   };
 
-  search = ev => {
-    ev.preventDefault();
+  search = () => {
     let searchType = this.state.searchType;
     let searchInput = this.state.searchInput;
     let mealType = this.state.mealType;
@@ -37,21 +38,21 @@ export default class SearchPage extends React.Component {
     function filterRecipes(recipe) {
       let isMatch = true;
 
-      if (searchType == "recipes") {
+      if (searchType === "recipes") {
         isMatch = recipe.name.toUpperCase().includes(searchInput.toUpperCase());
-      } else if (searchType == "chefs") {
+      } else if (searchType === "chefs") {
         isMatch = recipe.chef.name
           .toUpperCase()
           .includes(searchInput.toUpperCase());
-      } else if (searchType == "ingredients") {
+      } else if (searchType === "ingredients") {
         isMatch = recipe.ingreds
           .join("")
           .toUpperCase()
           .includes(searchInput.toUpperCase());
       }
 
-      if (mealType != "all") {
-        if (mealType != recipe.type) {
+      if (mealType !== "all") {
+        if (mealType !== recipe.type) {
           isMatch = false;
         }
       }
@@ -61,6 +62,11 @@ export default class SearchPage extends React.Component {
     this.setState({
       recipeList: this.props.recipes.filter(recipe => filterRecipes(recipe))
     });
+  };
+
+  viewRecipe = (ev, name) => {
+    console.log(name);
+    this.props.history.push(`/recipe/${name}`);
   };
 
   render() {
@@ -76,13 +82,19 @@ export default class SearchPage extends React.Component {
         />
         <SearchResults>
           {this.state.recipeList.map((recipe, index) => (
-            <RecipeCard recipe={recipe} key={recipe.name} />
+            <RecipeCard
+              recipe={recipe}
+              key={recipe.name}
+              viewRecipe={this.viewRecipe}
+            />
           ))}
         </SearchResults>
       </>
     );
   }
 }
+
+export default withRouter(SearchPage);
 
 const SearchResults = styled.section`
   margin: 0 auto;

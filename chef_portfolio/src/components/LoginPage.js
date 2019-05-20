@@ -13,15 +13,15 @@ export default class LoginPage extends React.Component {
     this.props.logIn();
   };
 
-  stageRegister = ev => {
-    this.setState({ signUp: true });
+  toggleRegister = ev => {
+    this.setState({ signUp: !this.state.signUp });
   };
 
   render() {
     return (
       <>
         {this.state.signUp ? (
-          <Register />
+          <Register goBack={this.toggleRegister} />
         ) : (
           <Login>
             <h1>Login Page</h1>
@@ -30,7 +30,7 @@ export default class LoginPage extends React.Component {
               <input placeholder="password" />
               <button type="submit">Log In</button>
             </form>
-            <button onClick={this.stageRegister}>Sign Up</button>
+            <button onClick={this.toggleRegister}>Sign Up</button>
           </Login>
         )}
       </>
@@ -41,5 +41,24 @@ export default class LoginPage extends React.Component {
 const Login = styled.section`
   h1 {
     margin: 0 auto;
+  }
+
+  form {
+    margin: 0 auto;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    input {
+      min-width: 300px;
+      margin: 10px;
+      font-size: 16px;
+      text-align: center;
+    }
+
+    button {
+      max-width: 100px;
+    }
   }
 `;

@@ -3,10 +3,13 @@ import styled from "styled-components";
 
 function RecipeCard(props) {
   return (
-    <Card image={props.recipe.pic}>
+    <Card
+      image={props.recipe.pic}
+      onClick={ev => props.viewRecipe(ev, props.recipe.name)}
+    >
       <h2>{props.recipe.name}</h2>
       <p>{props.recipe.type}</p>
-      <img src={props.recipe.pic} />
+      <img src={props.recipe.pic} alt="delicious foods!" />
       <p>{props.recipe.ingreds.length} ingredients</p>
       <p>Recipe by: {props.recipe.chef.name}</p>
     </Card>

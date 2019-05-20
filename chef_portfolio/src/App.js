@@ -1,13 +1,13 @@
 import React from "react";
-import { BrowserRouter as Router, Route, NavLink } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 
 // components
 import NavBar from "./components/NavBar";
 import SearchPage from "./components/SearchPage";
 import ManagePage from "./components/ManagePage";
+import RecipePage from "./components/RecipePage";
 
 // create-react-app bootstrapped items
-import logo from "./logo.svg";
 import "./App.css";
 
 // temporary MOCK data
@@ -26,6 +26,10 @@ function App() {
           render={props => <SearchPage recipes={recipes} />}
         />
         <Route path="/manage" render={props => <ManagePage />} />
+        <Route
+          path="/recipe/:id"
+          render={props => <RecipePage recipes={recipes} />}
+        />
       </div>
     </Router>
   );
