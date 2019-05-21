@@ -17,7 +17,13 @@ const Login_HOC = App =>
 
     render() {
       if (this.state.isLoggedIn) {
-        return <App logOut={this.logOut} />;
+        return (
+          <App
+            logOut={this.logOut}
+            chefs={this.props.chefs}
+            recipes={this.props.recipes}
+          />
+        );
       } else {
         return <LoginPage logIn={this.logIn} />;
       }
