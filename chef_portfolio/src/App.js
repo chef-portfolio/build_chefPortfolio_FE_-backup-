@@ -18,8 +18,8 @@ let recipes = data.recipes;
 function App() {
   return (
     <Router>
-      <NavBar />
       <div className="App">
+        <NavBar />
         <Route
           exact
           path="/"

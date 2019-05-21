@@ -3,6 +3,8 @@
   background-color: #282c34;
   color: white;
   min-height: 100vh;
+  padding-top: 70px;
+  box-sizing: border-box;
 }
 
 .App-logo {
