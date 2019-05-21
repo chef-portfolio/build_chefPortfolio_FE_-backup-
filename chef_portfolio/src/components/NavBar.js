@@ -16,9 +16,14 @@ export default function NavBar() {
 }
 
 const Nav = styled.nav`
+  position: fixed;
+  top: 0;
+  background: white;
+  width: 100%;
   height: 70px;
   display: flex;
   align-items: center;
+  box-shadow: 0 0 5px 0 black;
 
   div {
     margin: 0 auto;

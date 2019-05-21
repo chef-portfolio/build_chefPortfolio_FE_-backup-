@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { withRouter } from "react-router-dom";
+import ChefCard from "./chefs/ChefCard";
 
 class RecipePage extends React.Component {
   state = {
@@ -29,16 +30,9 @@ class RecipePage extends React.Component {
               </p>
             </div>
 
-            <div className="chef-info">
-              <h3>Recipe By: {this.state.recipe.chef.name}</h3>
-              <div className="card-contents">
-                <img src={this.state.recipe.chef.pic} alt="Chef's Avatar" />
-                <div className="info-box">
-                  <h4>{this.state.recipe.chef.loc}</h4>
-                  <h4>{this.state.recipe.chef.org}</h4>
-                  <contact>{this.state.recipe.chef.contact}</contact>
-                </div>
-              </div>
+            <div>
+              <h4>Recipe By:</h4>
+              <ChefCard chef={this.state.recipe.chef} />
             </div>
           </div>
         </header>
@@ -61,23 +55,6 @@ const Recipe = styled.section`
       justify-content: center;
       flex-wrap: wrap;
       align-items: flex-start;
-
-      .chef-info {
-        margin: 20px 0 0 20px;
-        padding: 10px;
-        border: 1px dashed darkgray;
-
-        h3 {
-          margin: 0 0 10px 0;
-        }
-        .card-contents {
-          display: flex;
-
-          .info-box {
-            padding: 10px;
-          }
-        }
-      }
     }
   }
 `;
