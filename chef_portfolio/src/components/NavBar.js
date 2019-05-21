@@ -23,6 +23,7 @@ const Nav = styled.nav`
   height: 70px;
   display: flex;
   align-items: center;
+  box-shadow: 0 0 5px 0 black;
 
   div {
     margin: 0 auto;
