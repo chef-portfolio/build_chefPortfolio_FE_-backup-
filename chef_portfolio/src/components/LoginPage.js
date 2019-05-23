@@ -1,15 +1,35 @@
 import React from "react";
 import styled from "styled-components";
-
+import axios from "axios";
 import Register from "./login/Register";
+import { URL } from "../data_sources/cp_backend";
+import jwt from "jsonwebtoken";
 
 export default class LoginPage extends React.Component {
   state = {
-    signUp: false
+    signUp: false,
+    username: "",
+    password: ""
   };
 
-  logIn = ev => {
+  handleChange = ev => {
+    this.setState({
+      [ev.target.name]: ev.target.value
+    });
+  };
+
+  logIn = async ev => {
     ev.preventDefault();
+    let info = {
+      username: this.state.username,
+      password: this.state.password
+    };
+
+    let response = await axios.post(`${URL}/auth/login`, info);
+
+    let token = response.data.token;
+    localStorage.setItem("access_token", token);
+
     this.props.logIn();
   };
 
@@ -26,8 +46,17 @@ export default class LoginPage extends React.Component {
           <Login>
             <h1>Login Page</h1>
             <form onSubmit={this.logIn}>
-              <input placeholder="username" />
-              <input placeholder="password" />
+              <input
+                placeholder="username"
+                name="username"
+                onChange={this.handleChange}
+              />
+              <input
+                placeholder="password"
+                name="password"
+                onChange={this.handleChange}
+                type="password"
+              />
               <button type="submit">Log In</button>
             </form>
             <button onClick={this.toggleRegister}>Sign Up</button>
