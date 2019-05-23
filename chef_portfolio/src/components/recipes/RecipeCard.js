@@ -5,13 +5,13 @@ function RecipeCard(props) {
   return (
     <Card
       image={props.recipe.pic}
-      onClick={ev => props.viewRecipe(ev, props.recipe.name)}
+      onClick={ev => props.viewRecipe(ev, props.recipe.title)}
     >
-      <h2>{props.recipe.name}</h2>
-      <p>{props.recipe.type}</p>
-      <img src={props.recipe.pic} alt="delicious foods!" />
-      <p>{props.recipe.ingreds.length} ingredients</p>
-      <p>Recipe by: {props.recipe.chef.name}</p>
+      <h2>{props.recipe.title}</h2>
+      <p>{props.recipe.mealType}</p>
+      <img src={props.recipe.img_url} alt="delicious foods!" />
+      <p>{props.recipe.ingredient_list.length} ingredients</p>
+      {/* <p>Recipe by: {props.recipe.chef.name}</p> */}
     </Card>
   );
 }

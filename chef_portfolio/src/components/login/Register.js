@@ -1,10 +1,28 @@
 import React from "react";
 import styled from "styled-components";
+import axios from "axios";
+import { URL } from "../../data_sources/cp_backend";
 
 export default class Register extends React.Component {
-  register = ev => {
+  state = {
+    username: "",
+    password: "",
+    location: "",
+    contact: "",
+    img_url: ""
+  };
+
+  handleChange = ev => {
+    this.setState({
+      [ev.target.name]: ev.target.value
+    });
+  };
+
+  register = async ev => {
     ev.preventDefault();
-    console.log("THIS ISNT REALLY REGISTERING ANYTHING! LOL NUB");
+
+    await axios.post(`${URL}/auth/register`, this.state);
+    this.props.goBack();
   };
 
   render() {
@@ -12,11 +30,31 @@ export default class Register extends React.Component {
       <SignUp>
         <h1>Sign Up</h1>
         <form onSubmit={this.register}>
-          <input placeholder="username" />
-          <input placeholder="password" />
-          <input placeholder="name" />
-          <input placeholder="location" />
-          <input placeholder="contact info" />
+          <input
+            placeholder="username (required)"
+            name="username"
+            onChange={this.handleChange}
+          />
+          <input
+            placeholder="password (required)"
+            name="password"
+            onChange={this.handleChange}
+          />
+          <input
+            placeholder="location"
+            name="location"
+            onChange={this.handleChange}
+          />
+          <input
+            placeholder="contact info"
+            name="contact"
+            onChange={this.handleChange}
+          />
+          <input
+            placeholder="imgage URL"
+            name="img_url"
+            onChange={this.handleChange}
+          />
           <button type="submit">Register</button>
         </form>
         <button onClick={this.props.goBack}>Back to Log-In</button>

@@ -6,33 +6,28 @@ import ChefCard from "./chefs/ChefCard";
 class RecipePage extends React.Component {
   state = {
     recipe: this.props.recipes.filter(
-      rec => rec.name === this.props.match.params.id
+      rec => rec.title === this.props.match.params.id
     )[0]
   };
-
-  // temporary for styling purposes
-  // state = {
-  //   recipe: this.props.recipes[0]
-  // };
 
   render() {
     return (
       <Recipe>
         <header>
-          <h1>{this.state.recipe.name}</h1>
+          <h1>{this.state.recipe.title}</h1>
 
           <div className="header-contents">
             <div className="recipe-info">
-              <img src={this.state.recipe.pic} alt="delicious foods!" />
+              <img src={this.state.recipe.img_url} alt="delicious foods!" />
               <p>
-                {this.state.recipe.ingreds.length} ingredient recipe for{" "}
-                {this.state.recipe.type}
+                {this.state.recipe.ingredient_list.length} ingredient recipe for{" "}
+                {this.state.recipe.mealType}
               </p>
             </div>
 
             <div>
               <h4>Recipe By:</h4>
-              <ChefCard chef={this.state.recipe.chef} />
+              {/* <ChefCard chef={this.state.recipe.chef} /> */}
             </div>
           </div>
         </header>

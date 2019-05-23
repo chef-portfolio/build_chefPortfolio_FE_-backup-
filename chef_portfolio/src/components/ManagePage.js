@@ -5,14 +5,22 @@ import { withRouter } from "react-router-dom";
 
 import ChefCard from "./chefs/ChefCard";
 import RecipeCard from "./recipes/RecipeCard";
+import AddRecipe from "./recipes/AddRecipe";
 
 class ManagePage extends React.Component {
   state = {
     chef: this.props.chefs[0],
-    recipes: this.props.recipes.filter(
-      recipe => recipe.chef.name === this.props.chefs[0].name
-    )
+    recipes: this.props.recipes
+    // .filter(
+    //   recipe => recipe.chef.name === this.props.chefs[0].name
+    // )
   };
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.recipes != this.props.recipes) {
+      this.setState({ recipes: this.props.recipes });
+    }
+  }
 
   editRecipe = (ev, name) => {
     console.log(name);
@@ -31,6 +39,7 @@ class ManagePage extends React.Component {
             <RecipeCard recipe={recipe} viewRecipe={this.editRecipe} />
           ))}
         </div>
+        <AddRecipe decoded={this.props.decoded} />
       </Manage>
     );
   }
