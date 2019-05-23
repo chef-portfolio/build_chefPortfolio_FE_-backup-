@@ -5,7 +5,8 @@ import jwt from "jsonwebtoken";
 const Login_HOC = App =>
   class extends React.Component {
     state = {
-      isLoggedIn: false
+      isLoggedIn: false,
+      decoded: {}
     };
 
     componentDidMount() {
@@ -24,6 +25,9 @@ const Login_HOC = App =>
 
     logIn = ev => {
       this.setState({ isLoggedIn: true });
+      let token = localStorage.getItem("access_token");
+      let decoded = jwt.decode(token);
+      this.setState({ decoded });
     };
 
     logOut = () => {
@@ -38,6 +42,7 @@ const Login_HOC = App =>
             logOut={this.logOut}
             chefs={this.props.chefs}
             recipes={this.props.recipes}
+            decoded={this.state.decoded}
           />
         );
       } else {

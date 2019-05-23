@@ -22,6 +22,12 @@ class SearchPage extends React.Component {
     this.setState({ recipeList: this.props.recipes });
   }
 
+  componentDidUpdate(prevProps) {
+    if (prevProps.recipes != this.props.recipes) {
+      this.setState({ recipeList: this.props.recipes });
+    }
+  }
+
   handleChange = async ev => {
     await this.setState({
       [ev.target.name]: ev.target.value
@@ -39,13 +45,17 @@ class SearchPage extends React.Component {
       let isMatch = true;
 
       if (searchType === "recipes") {
-        isMatch = recipe.name.toUpperCase().includes(searchInput.toUpperCase());
-      } else if (searchType === "chefs") {
-        isMatch = recipe.chef.name
+        isMatch = recipe.title
           .toUpperCase()
           .includes(searchInput.toUpperCase());
-      } else if (searchType === "ingredients") {
-        isMatch = recipe.ingreds
+      }
+      // else if (searchType === "chefs") {
+      //   isMatch = recipe.chef.name
+      //     .toUpperCase()
+      //     .includes(searchInput.toUpperCase());
+      // }
+      else if (searchType === "ingredients") {
+        isMatch = recipe.ingredient_list
           .join("")
           .toUpperCase()
           .includes(searchInput.toUpperCase());

@@ -27,8 +27,9 @@ export default class LoginPage extends React.Component {
 
     let response = await axios.post(`${URL}/auth/login`, info);
 
-    let token = response.data.token;
-    localStorage.setItem("access_token", token);
+    console.log(response);
+    console.log(jwt.decode(response.data.token));
+    localStorage.setItem("access_token", response.data.token);
 
     this.props.logIn();
   };
