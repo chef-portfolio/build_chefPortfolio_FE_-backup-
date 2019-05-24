@@ -24,7 +24,7 @@ class ManagePage extends React.Component {
   }
 
   editRecipe = (ev, name) => {
-    console.log(name);
+    // console.log(name);
     this.props.history.push(`/manage/edit/${name}`);
   };
 
@@ -56,6 +56,7 @@ class ManagePage extends React.Component {
             <EditRecipePage
               recipes={this.state.recipes}
               decoded={this.props.decoded}
+              getRecipes={this.props.getRecipes}
             />
           )}
         />
@@ -67,6 +68,7 @@ class ManagePage extends React.Component {
 export default Login_HOC(withRouter(ManagePage));
 
 const Manage = styled.section`
+  padding-bottom: 200px;
   display: flex;
   flex-direction: column;
   align-items: center;

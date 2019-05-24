@@ -49,6 +49,14 @@ class RecipePage extends React.Component {
             </div>
           </div>
         </header>
+        <h3>Ingredients</h3>
+        <ul>
+          {this.state.recipe.ingredient_list.map(ing => (
+            <li>{ing.ingredient}</li>
+          ))}
+        </ul>
+        <h3> Directions </h3>
+        <p>{this.state.recipe.instructions}</p>
       </Recipe>
     );
   }
@@ -57,6 +65,7 @@ class RecipePage extends React.Component {
 export default withRouter(RecipePage);
 
 const Recipe = styled.section`
+  padding-bottom: 200px;
   header {
     h1 {
       margin: 0 auto;
@@ -69,5 +78,15 @@ const Recipe = styled.section`
       flex-wrap: wrap;
       align-items: flex-start;
     }
+  }
+
+  ul {
+    margin: 0 auto;
+    width: 400px;
+    /* width: auto; */
+    max-width: 90%;
+  }
+  p {
+    white-space: pre-wrap;
   }
 `;

@@ -55,8 +55,8 @@ class SearchPage extends React.Component {
       //     .includes(searchInput.toUpperCase());
       // }
       else if (searchType === "ingredients") {
-        isMatch = recipe.ingredient_list
-          .join("")
+        console.log(recipe.ingredient_list);
+        isMatch = JSON.stringify(recipe.ingredient_list)
           .toUpperCase()
           .includes(searchInput.toUpperCase());
       }

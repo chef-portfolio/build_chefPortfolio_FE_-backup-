@@ -43,6 +43,7 @@ const Login_HOC = App =>
             chefs={this.props.chefs}
             recipes={this.props.recipes}
             decoded={this.state.decoded}
+            getRecipes={this.props.getRecipes}
           />
         );
       } else {
