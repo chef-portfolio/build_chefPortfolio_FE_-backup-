@@ -62,7 +62,7 @@ class SearchPage extends React.Component {
       }
 
       if (mealType !== "all") {
-        if (mealType !== recipe.type) {
+        if (mealType !== recipe.mealType) {
           isMatch = false;
         }
       }
