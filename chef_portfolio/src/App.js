@@ -8,6 +8,7 @@ import NavBar from "./components/NavBar";
 import SearchPage from "./components/SearchPage";
 import ManagePage from "./components/ManagePage";
 import RecipePage from "./components/RecipePage";
+import EditRecipePage from "./components/EditRecipe";
 
 // create-react-app bootstrapped items
 import "./App.css";
@@ -50,10 +51,10 @@ class App extends React.Component {
             path="/recipe/:id"
             render={props => <RecipePage recipes={this.state.recipes} />}
           />
-          <Route
+          {/* <Route
             path="/edit/:id"
-            render={props => <RecipePage recipes={this.state.recipes} />}
-          />
+            render={props => <EditRecipePage recipes={this.state.recipes} />}
+          /> */}
         </div>
       </Router>
     );
