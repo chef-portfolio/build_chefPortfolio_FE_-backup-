@@ -79,6 +79,28 @@ const SignUp = styled.section`
       margin: 10px;
       font-size: 16px;
       text-align: center;
+      padding: 1rem;
+      border-radius: 10px;
     }
+    button{
+      padding: 1rem;
+      width: 50%;
+      margin: 0 auto;
+      border-radius: 10px;
+      background: blue;
+      outline: none;
+      color: white;
+      font-size: 1rem;
+    }
+  }
+  button{
+    padding: 1rem;
+    width: 10%;
+    margin: 0 auto;
+    border-radius: 10px;
+    background: grey;
+    outline: none;
+    margin: 1rem;
+    font-size: 1rem;
   }
 `;
