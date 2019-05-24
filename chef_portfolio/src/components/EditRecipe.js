@@ -13,7 +13,8 @@ class EditRecipePage extends React.Component {
     mealType: "breakfast",
     instructions: "",
     img_url: "",
-    chef_id: this.props.decoded.subject
+    chef_id: this.props.decoded.subject,
+    ingredient: ""
   };
 
   componentDidMount() {
@@ -40,7 +41,7 @@ class EditRecipePage extends React.Component {
     }
   }
 
-  updateRecipe = ev => {
+  updateRecipe = async ev => {
     ev.preventDefault();
     let updates = {
       title: this.state.title,
@@ -48,7 +49,21 @@ class EditRecipePage extends React.Component {
       instructions: this.state.instructions,
       mealType: this.state.mealType
     };
-    axios.put(`${URL}/recipes/${this.state.id}`, updates);
+    await axios.put(`${URL}/recipes/${this.state.id}`, updates);
+
+    this.props.history.push("/manage");
+    this.props.getRecipes();
+  };
+
+  addIngredient = async ev => {
+    ev.preventDefault();
+    let toInsert = {
+      ingredient: this.state.ingredient,
+      recipe_id: this.state.id
+    };
+    await axios.post(`${URL}/ingredients`, toInsert);
+    this.setState({ ingredient: "" });
+    this.props.getRecipes();
   };
 
   handleChange = ev => {
@@ -100,6 +115,21 @@ class EditRecipePage extends React.Component {
           </div>
           <button type="submit">Update Recipe</button>
         </form>
+        <form onSubmit={this.addIngredient}>
+          <h4>Ingredients</h4>
+          <ul>
+            {this.state.recipe.ingredient_list.map(ing => (
+              <li>{ing.ingredient}</li>
+            ))}
+          </ul>
+          <input
+            name="ingredient"
+            placeholder="ingredient"
+            onChange={this.handleChange}
+            value={this.state.ingredient}
+          />
+          <button type="submit">Add Ingredient</button>
+        </form>
       </Recipe>
     );
   }
@@ -108,6 +138,7 @@ class EditRecipePage extends React.Component {
 export default withRouter(EditRecipePage);
 
 const Recipe = styled.section`
+  padding-bottom: 200px;
   form {
     h1 {
       margin: 0 auto;
@@ -129,6 +160,12 @@ const Recipe = styled.section`
       textarea {
         height: 200px;
       }
+    }
+
+    ul {
+      width: 300px;
+      max-width: 90%;
+      margin: 30px auto;
     }
   }
 `;

@@ -25,11 +25,15 @@ class App extends React.Component {
   };
 
   async componentDidMount() {
+    this.getRecipes();
+  }
+
+  getRecipes = async () => {
     let res = await axios.get(`${URL}/recipes`);
     let recipes = res.data;
-    console.log(recipes);
+    // console.log(recipes);
     this.setState({ recipes });
-  }
+  };
 
   render() {
     return (
@@ -44,7 +48,11 @@ class App extends React.Component {
           <Route
             path="/manage"
             render={props => (
-              <ManagePage chefs={chefs} recipes={this.state.recipes} />
+              <ManagePage
+                chefs={chefs}
+                recipes={this.state.recipes}
+                getRecipes={this.getRecipes}
+              />
             )}
           />
           <Route
