@@ -24,10 +24,10 @@ const Login_HOC = App =>
     }
 
     logIn = ev => {
-      this.setState({ isLoggedIn: true });
       let token = localStorage.getItem("access_token");
       let decoded = jwt.decode(token);
       this.setState({ decoded });
+      this.setState({ isLoggedIn: true });
     };
 
     logOut = () => {

@@ -10,21 +10,33 @@ import EditRecipePage from "./EditRecipe";
 
 class ManagePage extends React.Component {
   state = {
-    chef: this.props.chefs[0],
-    recipes: this.props.recipes
-    // .filter(
-    //   recipe => recipe.chef.name === this.props.chefs[0].name
-    // )
+    recipes: [],
+    chef: {}
   };
+
+  componentDidMount() {
+    if (this.props.recipes.length > 0) {
+      this.setState({
+        recipes: this.props.recipes.filter(
+          recipe => recipe.chef.id === this.props.decoded.subject
+        ),
+        chef: this.props.chefs[this.props.decoded.subject]
+      });
+    }
+  }
 
   componentDidUpdate(prevProps) {
     if (prevProps.recipes != this.props.recipes) {
-      this.setState({ recipes: this.props.recipes });
+      this.setState({
+        recipes: this.props.recipes.filter(
+          recipe => recipe.chef.id === this.props.decoded.subject
+        ),
+        chef: this.props.chefs[this.props.decoded.subject]
+      });
     }
   }
 
   editRecipe = (ev, name) => {
-    // console.log(name);
     this.props.history.push(`/manage/edit/${name}`);
   };
 
