@@ -70,7 +70,7 @@ export default class LoginPage extends React.Component {
 
 const Login = styled.section`
   h1 {
-    margin: 0 auto;
+    margin: 2rem auto;
   }
 
   form {
@@ -79,16 +79,38 @@ const Login = styled.section`
     display: flex;
     flex-direction: column;
     align-items: center;
-
     input {
-      min-width: 300px;
       margin: 10px;
       font-size: 16px;
       text-align: center;
+      padding: 1rem;
+      border-radius: 10px;
+      width: 70%;
     }
-
-    button {
-      max-width: 100px;
+    button{
+      padding: 1rem;
+      width: 50%;
+      margin: 0 auto;
+      border-radius: 10px;
+      background: blue;
+      outline: none;
+      color: white;
+      font-size: 1rem;
     }
+  }
+  button{
+    padding: 1rem;
+    width: 10%;
+    margin: 0 auto;
+    border-radius: 10px;
+    background: grey;
+    outline: none;
+    margin: 1rem;
+    font-size: 1rem;
+    color: white;
+  }
+  button:hover{
+    color: white;
+    background: rgb(61, 3, 13);
   }
 `;

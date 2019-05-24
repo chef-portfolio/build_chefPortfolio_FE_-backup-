@@ -91,6 +91,7 @@ const SignUp = styled.section`
       outline: none;
       color: white;
       font-size: 1rem;
+      box-shadow: 0 2px 2px grey;
     }
   }
   button{
@@ -102,5 +103,10 @@ const SignUp = styled.section`
     outline: none;
     margin: 1rem;
     font-size: 1rem;
+    box-shadow: 0 2px 2px grey;
+  }
+  button:hover{
+    color: white;
+    background: rgb(61, 3, 13);
   }
 `;
