@@ -5,6 +5,7 @@ export default function SearchForm(props) {
   return (
     <SearchBar onSubmit={props.search}>
       <select
+        className="custom"
         name="mealType"
         value={props.state.mealType}
         onChange={props.handleChange}
@@ -23,6 +24,7 @@ export default function SearchForm(props) {
         onChange={props.handleChange}
       />
       <select
+        className="custom"
         name="searchType"
         value={props.state.searchType}
         onChange={props.handleChange}
@@ -43,5 +45,14 @@ const SearchBar = styled.form`
   input {
     width: 500px;
     font-size: 24px;
+    padding: 0.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .custom {
+    position: relative;
+    font-family: Arial;
+    margin: 0 1rem;
+    margin-bottom: 2rem;
   }
 `;

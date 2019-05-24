@@ -35,9 +35,11 @@ const Nav = styled.nav`
     a {
       font-size: 20px;
       text-decoration: none;
+      positin: relative;
+      color: red;
     }
     .active {
-      text-decoration: underline;
+      border-bottom: red 2px solid;
     }
   }
 `;
