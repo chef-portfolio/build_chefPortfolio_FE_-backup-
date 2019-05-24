@@ -68,7 +68,7 @@ const Recipe = styled.section`
   padding-bottom: 200px;
   header {
     h1 {
-      margin: 0 auto;
+      margin: 2rem auto;
       font-size: 46px;
     }
 
@@ -85,8 +85,17 @@ const Recipe = styled.section`
     width: 400px;
     /* width: auto; */
     max-width: 90%;
+    list-style-position: outside;
   }
   p {
     white-space: pre-wrap;
   }
+img{
+  border-radius: 10px;
+  padding-top: 1rem;
+}
+p{
+  font-size: 1rem;
+  text-align: center;
+}
 `;

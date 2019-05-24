@@ -42,6 +42,7 @@ class AddRecipe extends React.Component {
           onChange={this.handleChange}
         />
         <select
+          className="custom-select"
           name="mealType"
           value={this.state.mealType}
           onChange={this.handleChange}
@@ -72,6 +73,9 @@ const Form = styled.form`
     text-align: center;
     font-size: 16px;
     text-align-last: center;
+    padding: .5rem;
+    border-radius: 10px;
+    margin: 1rem;
   }
 
   textarea {
@@ -84,6 +88,21 @@ const Form = styled.form`
     width: 200px;
     height: 50px;
     align-self: center;
+    padding: .5rem;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+  button:hover{
+    color: white;
+    background: rgb(61, 3, 13);
+  }
+  .custom-select {
+    position: relative;
+    font-family: Arial;
+    margin: 0 1rem;
+    margin-bottom: 2rem;
+    outline: none;
+    padding: 1rem;
   }
 `;
 

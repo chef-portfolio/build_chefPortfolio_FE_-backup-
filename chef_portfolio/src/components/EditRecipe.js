@@ -156,9 +156,13 @@ const Recipe = styled.section`
         font-size: 16px;
         width: 500px;
         max-width: 90%;
+        padding: 1rem;
+      border-radius: 10px;
       }
       textarea {
         height: 200px;
+        padding: 1rem;
+      border-radius: 10px;
       }
     }
 
@@ -167,5 +171,20 @@ const Recipe = styled.section`
       max-width: 90%;
       margin: 30px auto;
     }
+  }
+  button{
+    padding: 1rem;
+    width: 10%;
+    margin: 0 auto;
+    border-radius: 10px;
+    background: grey;
+    outline: none;
+    margin: 1rem;
+    font-size: 1rem;
+    box-shadow: 0 2px 2px grey;
+  }
+  button:hover{
+    color: white;
+    background: rgb(61, 3, 13);
   }
 `;
