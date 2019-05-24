@@ -5,7 +5,7 @@ import ChefCard from "./chefs/ChefCard";
 
 class RecipePage extends React.Component {
   state = {
-    recipe: { ingredient_list: [] }
+    recipe: { ingredient_list: [], chef: {} }
   };
 
   componentDidMount() {
@@ -45,7 +45,7 @@ class RecipePage extends React.Component {
 
             <div>
               <h4>Recipe By:</h4>
-              {/* <ChefCard chef={this.state.recipe.chef} /> */}
+              <ChefCard chef={this.state.recipe.chef} />
             </div>
           </div>
         </header>

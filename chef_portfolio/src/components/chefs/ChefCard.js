@@ -4,13 +4,12 @@ import styled from "styled-components";
 export default function ChefCard(props) {
   return (
     <Card>
-      <h3>{props.chef.name}</h3>
+      <h3>{props.chef.username}</h3>
       <div className="card-contents">
-        <img src={props.chef.pic} alt="Chef's Avatar" />
+        <img src={props.chef.img_url} alt="Chef's Avatar" />
         <div className="info-box">
-          <h4>{props.chef.loc}</h4>
-          <h4>{props.chef.org}</h4>
-          <p>{props.chef.contact}</p>
+          <h4>Location: {props.chef.location}</h4>
+          <p>Contact: {props.chef.contact}</p>
         </div>
       </div>
     </Card>
@@ -32,6 +31,12 @@ const Card = styled.address`
 
     .info-box {
       padding: 10px;
+    }
+
+    img {
+      max-width: 100px;
+      max-height: 100px;
+      object-fit: scale-down;
     }
   }
 `;

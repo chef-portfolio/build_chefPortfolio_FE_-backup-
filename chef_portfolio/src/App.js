@@ -21,7 +21,8 @@ let chefs = data.chefs;
 
 class App extends React.Component {
   state = {
-    recipes: []
+    recipes: [],
+    chefs: {}
   };
 
   async componentDidMount() {
@@ -32,7 +33,20 @@ class App extends React.Component {
     let res = await axios.get(`${URL}/recipes`);
     let recipes = res.data;
     // console.log(recipes);
-    this.setState({ recipes });
+
+    res = await axios.get(`${URL}/users`);
+    let chefsArr = res.data;
+
+    let chefsTable = {};
+    for (let i = 0; i < chefsArr.length; i++) {
+      chefsTable[chefsArr[i].id] = chefsArr[i];
+    }
+
+    for (let i = 0; i < recipes.length; i++) {
+      recipes[i] = { ...recipes[i], chef: chefsTable[recipes[i].chef_id] };
+    }
+
+    this.setState({ recipes, chefs: chefsTable });
   };
 
   render() {
@@ -49,7 +63,7 @@ class App extends React.Component {
             path="/manage"
             render={props => (
               <ManagePage
-                chefs={chefs}
+                chefs={this.state.chefs}
                 recipes={this.state.recipes}
                 getRecipes={this.getRecipes}
               />

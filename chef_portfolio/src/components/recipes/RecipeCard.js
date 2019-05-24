@@ -11,7 +11,7 @@ function RecipeCard(props) {
       <p>{props.recipe.mealType}</p>
       <img src={props.recipe.img_url} alt="delicious foods!" />
       <p>{props.recipe.ingredient_list.length} ingredients</p>
-      {/* <p>Recipe by: {props.recipe.chef.name}</p> */}
+      <p>Recipe by: {props.recipe.chef.username}</p>
     </Card>
   );
 }
