@@ -1,11 +1,12 @@
 import React from "react";
 import styled from "styled-components";
 import Login_HOC from "./Login_HOC";
-import { withRouter } from "react-router-dom";
+import { withRouter, Route, Router } from "react-router-dom";
 
 import ChefCard from "./chefs/ChefCard";
 import RecipeCard from "./recipes/RecipeCard";
 import AddRecipe from "./recipes/AddRecipe";
+import EditRecipePage from "./EditRecipe";
 
 class ManagePage extends React.Component {
   state = {
@@ -24,23 +25,41 @@ class ManagePage extends React.Component {
 
   editRecipe = (ev, name) => {
     console.log(name);
-    this.props.history.push(`/edit/${name}`);
+    this.props.history.push(`/manage/edit/${name}`);
   };
 
   render() {
     return (
-      <Manage>
-        <h1>Manage Page</h1>
-        <button onClick={this.props.logOut}>Log Out</button>
-        <ChefCard chef={this.state.chef} />
+      <>
+        <Route
+          exact
+          path="/manage"
+          render={props => (
+            <Manage>
+              <h1>Manage Page</h1>
+              <button onClick={this.props.logOut}>Log Out</button>
+              <ChefCard chef={this.state.chef} />
 
-        <div className="recipe-list">
-          {this.state.recipes.map(recipe => (
-            <RecipeCard recipe={recipe} viewRecipe={this.editRecipe} />
-          ))}
-        </div>
-        <AddRecipe decoded={this.props.decoded} />
-      </Manage>
+              <div className="recipe-list">
+                {this.state.recipes.map(recipe => (
+                  <RecipeCard recipe={recipe} viewRecipe={this.editRecipe} />
+                ))}
+              </div>
+              <AddRecipe decoded={this.props.decoded} />
+            </Manage>
+          )}
+        />
+        <Route
+          exact
+          path="/manage/edit/:id"
+          render={props => (
+            <EditRecipePage
+              recipes={this.state.recipes}
+              decoded={this.props.decoded}
+            />
+          )}
+        />
+      </>
     );
   }
 }

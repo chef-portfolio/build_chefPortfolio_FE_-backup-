@@ -5,10 +5,28 @@ import ChefCard from "./chefs/ChefCard";
 
 class RecipePage extends React.Component {
   state = {
-    recipe: this.props.recipes.filter(
-      rec => rec.title === this.props.match.params.id
-    )[0]
+    recipe: { ingredient_list: [] }
   };
+
+  componentDidMount() {
+    if (this.props.recipes.length > 0) {
+      this.setState({
+        recipe: this.props.recipes.filter(
+          rec => rec.title === this.props.match.params.id
+        )[0]
+      });
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.recipes != this.props.recipes) {
+      this.setState({
+        recipe: this.props.recipes.filter(
+          rec => rec.title === this.props.match.params.id
+        )[0]
+      });
+    }
+  }
 
   render() {
     return (
