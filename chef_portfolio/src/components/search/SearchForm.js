@@ -28,7 +28,7 @@ export default function SearchForm(props) {
         onChange={props.handleChange}
       >
         <option value="recipes">by Recipe Name</option>
-        {/* <option value="chefs">by Chef</option> */}
+        <option value="chefs">by Chef</option>
         <option value="ingredients">by Ingredient</option>
       </select>
     </SearchBar>
