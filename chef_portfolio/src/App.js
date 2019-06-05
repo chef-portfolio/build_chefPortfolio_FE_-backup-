@@ -14,10 +14,10 @@ import EditRecipePage from "./components/EditRecipe";
 import "./App.css";
 
 // temporary MOCK data
-import generate_data from "./mock_data/mock_data";
-const data = generate_data();
+// import generate_data from "./mock_data/mock_data";
+// const data = generate_data();
 // let recipes = data.recipes;
-let chefs = data.chefs;
+// let chefs = data.chefs;
 
 class App extends React.Component {
   state = {
